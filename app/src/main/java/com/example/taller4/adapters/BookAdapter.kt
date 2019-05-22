@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taller4.R
+import com.example.taller4.models.Book
 import kotlinx.android.synthetic.main.item_list.view.*
 
 class BookAdapter (context: Context) : RecyclerView.Adapter<BookAdapter.BookViewHolder>(){
@@ -28,7 +29,7 @@ class BookAdapter (context: Context) : RecyclerView.Adapter<BookAdapter.BookView
         holder.bookViewItem.text = "" // TODO no funciona porque no existe entidad book
     }
 
-    fun setBooks(books: List<Books>){
+    fun setBooks(books: List<Book>){
         this.books = books
     }
 
