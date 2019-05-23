@@ -2,6 +2,7 @@ package com.example.taller4.DAOs
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.taller4.Entities.Libro
 import com.example.taller4.Entities.Tags
 
 @Dao
@@ -18,4 +19,10 @@ interface TagsDAO {
 
     @Delete
     fun deleteTag(tag: Tags)
+
+    @Query("SELECT * FROM Tags\n" +
+            "INNER JOIN TagsxLibro\n" +
+            "ON Tags.id=TagsxLibro.tagId\n" +
+            "WHERE TagsxLibro.libroId = :libroId")
+    fun getTagsByLibro(libroId: Int): List<Tags>
 }

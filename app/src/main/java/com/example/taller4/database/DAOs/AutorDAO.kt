@@ -18,4 +18,10 @@ interface AutorDAO {
 
     @Delete
     fun deleteAutor(autor: Autor)
+
+    @Query("SELECT * FROM Autor\n" +
+            "INNER JOIN AutorxLibro\n" +
+            "ON Autor.id=AutorxLibro.autorId\n" +
+            "WHERE AutorxLibro.libroId = :libroId")
+    fun getAutorByLibro(libroId: Int): List<Autor>
 }

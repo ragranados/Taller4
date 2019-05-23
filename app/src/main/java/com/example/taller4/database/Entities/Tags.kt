@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Tags")
 data class Tags (
-    val tag: String
+    val tag: List<String>
 ){
     @PrimaryKey(autoGenerate = true)
     var id:Long=0
