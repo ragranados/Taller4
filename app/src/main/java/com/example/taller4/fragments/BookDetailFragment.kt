@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.taller4.Entities.Libro
 
 import com.example.taller4.R
 import com.example.taller4.models.Book
@@ -26,7 +27,7 @@ private const val ARG_PARAM1 = "Book"
  */
 class BookDetailFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var book = Book()
+    private var book = Libro()
 
     //private var listener: OnFragmentInteractionListener? = null
 
@@ -89,7 +90,7 @@ class BookDetailFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(book: Book):BookDetailFragment{
+        fun newInstance(book: Libro):BookDetailFragment{
             val newFragment = BookDetailFragment()
 
             newFragment.book = book

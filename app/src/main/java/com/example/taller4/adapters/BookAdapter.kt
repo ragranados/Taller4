@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taller4.Entities.Libro
 import com.example.taller4.R
 import com.example.taller4.models.Book
 import kotlinx.android.synthetic.main.item_list.view.*
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.item_list.view.*
 class BookAdapter (context: Context) : RecyclerView.Adapter<BookAdapter.BookViewHolder>(){
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var books = emptyList<Book>()
+    private var books = emptyList<Libro>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
         val itemView = inflater.inflate(R.layout.item_list,parent,false)
@@ -29,7 +30,7 @@ class BookAdapter (context: Context) : RecyclerView.Adapter<BookAdapter.BookView
         holder.bookViewItem.text = "" // TODO no funciona porque no existe entidad book
     }
 
-    fun setBooks(books: List<Book>){
+    fun setBooks(books: List<Libro>){
         this.books = books
     }
 

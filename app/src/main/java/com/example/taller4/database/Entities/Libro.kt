@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Libro")
 data class Libro (
-    val nombre: String,
-    val isbn: String,
-    val favorito: Boolean
+    val nombre: String = "N/A",
+    val isbn: String = "N/A",
+    val favorito: Boolean = false
 ){
     @PrimaryKey(autoGenerate = true)
     var id:Long=0
