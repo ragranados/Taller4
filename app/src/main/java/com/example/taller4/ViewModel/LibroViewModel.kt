@@ -30,6 +30,8 @@ class LibroViewModel(app:Application):AndroidViewModel(app) {
         repository= LibroRepository(libroDAO, autorDAO,editorialDAO,tagsDAO)
     }
 
+    //Inserts
+
     fun insertLibro(libro:Libro)= viewModelScope.launch(Dispatchers.IO){
         repository!!.insertLibro(libro)
     }
@@ -45,8 +47,19 @@ class LibroViewModel(app:Application):AndroidViewModel(app) {
         repository!!.insertTag(tags)
     }
 
+
+    //getall
+
     fun getAllLibros():LiveData<List<Libro>> = repository!!.getAllLibros()
     fun getAllAutores():LiveData<List<Autor>> = repository!!.getAllAutores()
     fun getAllEditores():LiveData<List<Editorial>> = repository!!.getAllEditoriales()
-    fun getAllTags():LiveData<List<Tags>> = repository!!.getAllTags()
+    fun getAllTags():LiveData<List<Tags>> = repository!!.getallTags()
+
+
+    //Find one
+
+    fun findLibroByName(name: String):List<Libro> = repository!!.findLibroByName(name)
+    fun findAutorByLibro(autor: Int):List<Autor> = repository!!.getAutorByLibro(autor)
+    fun getEditorialByLibro(Libroid: Int): List<Editorial> = repository!!.getEditorialByLibro(Libroid)
+    fun getTagsByLibro(Libid: Int): List<Tags> = repository!!.getTagsByLibro(Libid)
 }
