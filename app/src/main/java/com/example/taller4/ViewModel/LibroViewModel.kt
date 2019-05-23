@@ -44,7 +44,7 @@ class LibroViewModel(app:Application):AndroidViewModel(app) {
     fun insertTags(tags: Tags)= viewModelScope.launch(Dispatchers.IO){
         repository!!.insertTag(tags)
     }
-
+kk
     fun getAllLibros():LiveData<List<Libro>> = repository!!.getAllLibros()
     fun getAllAutores():LiveData<List<Autor>> = repository!!.getAllAutores()
     fun getAllEditores():LiveData<List<Editorial>> = repository!!.getAllEditoriales()
