@@ -17,6 +17,6 @@ import androidx.room.ForeignKey
         )
 )
 data class EditorialxLibro (
-    val edotorialId: Int,
+    val editorialId: Int,
     val libroId: Int
 )

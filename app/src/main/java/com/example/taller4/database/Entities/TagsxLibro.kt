@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 
 @Entity(tableName = "TagsxLibro",
-        primaryKeys = arrayOf("tagId", "libroid"),
+        primaryKeys = arrayOf("tagId", "libroId"),
         foreignKeys = arrayOf(
             ForeignKey(
                 entity = Tags::class,
