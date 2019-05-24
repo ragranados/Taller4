@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Autor")
 data class Autor (
-    val nombre: String
-    //TODO No se puede guardar arrays en las bases de datos
+    val nombre: String,
+    val libros: ArrayList<String>
 ){
     @PrimaryKey(autoGenerate = true)
     var id:Long=0
