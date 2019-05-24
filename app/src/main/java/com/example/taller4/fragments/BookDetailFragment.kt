@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.taller4.Entities.Libro
+import com.example.taller4.LibroDTO
 
 import com.example.taller4.R
 import com.example.taller4.models.Book
@@ -18,7 +19,7 @@ import com.example.taller4.models.Book
 
 class BookDetailFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var book = Libro()
+    private var book = LibroDTO()
 
     private lateinit var fragmentView: View
 
@@ -37,7 +38,7 @@ class BookDetailFragment : Fragment() {
 
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(book: Libro):BookDetailFragment{
+        fun newInstance(book: LibroDTO):BookDetailFragment{
             val newFragment = BookDetailFragment()
 
             newFragment.book = book
