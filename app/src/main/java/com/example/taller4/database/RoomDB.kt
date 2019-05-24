@@ -68,21 +68,25 @@ public abstract class RoomDB:RoomDatabase(){
         suspend fun populateDBLibro(libroDAO: LibroDAO){
             libroDAO.deletall()
             var libro = Libro("IMG bonita", "Calculo", "segunda", "libro de calculo", "34sfgsfg", false)
+            libroDAO.insertLibro(libro)
         }
 
         suspend fun populateDBAutor(autorDAO: AutorDAO){
             autorDAO.deleteAll()
             var autor = Autor("Juan")
+            autorDAO.insertAutor(autor)
         }
 
         suspend fun populateDBEditorial(editorialDAO: EditorialDAO){
             editorialDAO.deleteAll()
             var editorial = Editorial("UCA")
+            editorialDAO.insertEditorial(editorial)
         }
 
         suspend fun populateDBTags(tagsDAO: TagsDAO){
             tagsDAO.deleteAll()
             var tag = Tags("numeros")
+            tagsDAO.insertTag(tag)
         }
 
     }
