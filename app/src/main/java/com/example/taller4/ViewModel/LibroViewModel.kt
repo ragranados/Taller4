@@ -58,8 +58,8 @@ class LibroViewModel(app:Application):AndroidViewModel(app) {
 
     //Find one
 
-    fun findLibroByName(name: String):List<Libro> = repository!!.findLibroByName(name)
-    fun findAutorByLibro(autor: Int):List<Autor> = repository!!.getAutorByLibro(autor)
-    fun getEditorialByLibro(Libroid: Int): List<Editorial> = repository!!.getEditorialByLibro(Libroid)
-    fun getTagsByLibro(Libid: Int): List<Tags> = repository!!.getTagsByLibro(Libid)
+    fun findLibroByName(name: String):LiveData<List<Libro>> = repository!!.findLibroByName(name)
+    fun findAutorByLibro(autor: Int):LiveData<List<Autor>> = repository!!.getAutorByLibro(autor)
+    fun getEditorialByLibro(Libroid: Int): LiveData<List<Editorial>> = repository!!.getEditorialByLibro(Libroid)
+    fun getTagsByLibro(Libid: Int): LiveData<List<Tags>> = repository!!.getTagsByLibro(Libid)
 }

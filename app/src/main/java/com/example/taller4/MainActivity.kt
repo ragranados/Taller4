@@ -3,10 +3,13 @@ package com.example.taller4
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taller4.Entities.Libro
+import com.example.taller4.Entities.Tags
 import com.example.taller4.ViewModel.LibroViewModel
 import com.example.taller4.adapters.BookAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,18 +24,16 @@ class MainActivity : AppCompatActivity() {
 
         startActivity(intent)*/
 
-        //val libroViewModel= ViewModelProviders.of(this).get(LibroViewModel::class.java)
+        val libroViewModel= ViewModelProviders.of(this).get(LibroViewModel::class.java)
 
-        val libro1 = LibroDTO("unooooo")
-        val libro2 = LibroDTO("dos")
-        val libro3 = LibroDTO("dos")
+        val libros = libroViewModel.getTagsByLibro(0)
 
-        val libros = ArrayList<LibroDTO>()
-        libros.add(libro1)
-        libros.add(libro2)
-        libros.add(libro3)
+        val librosObserver = Observer<List<Tags>>{ lista ->
+            Log.d("prueba",lista[0].tag)
+        }
 
-        setUpView(libros)
+        libros.observe(this,librosObserver)
+
 
     }
 
