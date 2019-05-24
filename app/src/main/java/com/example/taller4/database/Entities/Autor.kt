@@ -5,8 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Autor")
 data class Autor (
-    val nombre: String,
-    val libros: ArrayList<String>
+    val nombre: String
 ){
     @PrimaryKey(autoGenerate = true)
     var id:Long=0

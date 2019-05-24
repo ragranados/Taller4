@@ -17,9 +17,12 @@ interface LibroDAO {
     fun updateLibro(libro: Libro)
 
     @Query("SELECT * FROM Libro WHERE nombre LIKE :name")
-    fun findLibroByName(name: String): List<Libro>
+    fun findLibroByName(name: String): LiveData<List<Libro>>
 
     @Delete
     fun deleteLibro(libro: Libro)
+
+    @Query("DELETE FROM Libro")
+    fun deletall()
 
 }

@@ -4,11 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.taller4.DAOs.AutorDAO
 import com.example.taller4.DAOs.EditorialDAO
 import com.example.taller4.DAOs.LibroDAO
 import com.example.taller4.DAOs.TagsDAO
 import com.example.taller4.Entities.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Database(entities = [Autor::class,
                       AutorxLibro::class,
@@ -29,7 +33,8 @@ public abstract class RoomDB:RoomDatabase(){
         private var INSTANCE:RoomDB?=null
 
         fun getInstance(
-            context: Context
+            context: Context,
+            scope: CoroutineScope
         ):RoomDB{
             val tempInstance = INSTANCE
             if(tempInstance!=null){
@@ -38,10 +43,46 @@ public abstract class RoomDB:RoomDatabase(){
             synchronized(this){
                 val instance = Room
                     .databaseBuilder(context,RoomDB::class.java,"LibroDB")
+                    .addCallback(LibroDBCallback(scope))
                     .build()
                 INSTANCE=instance
                 return instance
             }
+        }
+
+        private class LibroDBCallback(private val scope: CoroutineScope):RoomDatabase.Callback(){
+            override fun onOpen(db: SupportSQLiteDatabase){
+                super.onOpen(db)
+                INSTANCE?.let { database ->
+                    scope.launch(Dispatchers.IO) {
+                        populateDBLibro(database.libroDao())
+                        populateDBAutor(database.autorDao())
+                        populateDBEditorial(database.editorialDao())
+                        populateDBTags(database.tagsDao())
+
+                    }
+                }
+            }
+        }
+
+        suspend fun populateDBLibro(libroDAO: LibroDAO){
+            libroDAO.deletall()
+            var libro = Libro("IMG bonita", "Calculo", "segunda", "libro de calculo", "34sfgsfg", false)
+        }
+
+        suspend fun populateDBAutor(autorDAO: AutorDAO){
+            autorDAO.deleteAll()
+            var autor = Autor("Juan")
+        }
+
+        suspend fun populateDBEditorial(editorialDAO: EditorialDAO){
+            editorialDAO.deleteAll()
+            var editorial = Editorial("UCA")
+        }
+
+        suspend fun populateDBTags(tagsDAO: TagsDAO){
+            tagsDAO.deleteAll()
+            var tag = Tags("numeros")
         }
 
     }

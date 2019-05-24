@@ -20,9 +20,12 @@ interface TagsDAO {
     @Delete
     fun deleteTag(tag: Tags)
 
+    @Query("DELETE FROM Tags")
+    fun deleteAll()
+
     @Query("SELECT * FROM Tags\n" +
             "INNER JOIN TagsxLibro\n" +
             "ON Tags.id=TagsxLibro.tagId\n" +
             "WHERE TagsxLibro.libroId = :libroId")
-    fun getTagsByLibro(libroId: Int): List<Tags>
+    fun getTagsByLibro(libroId: Int): LiveData<List<Tags>>
 }

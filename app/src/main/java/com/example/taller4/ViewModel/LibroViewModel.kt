@@ -23,10 +23,10 @@ class LibroViewModel(app:Application):AndroidViewModel(app) {
     }
 
     fun agregandoLibros(){
-        val libroDAO= RoomDB.getInstance(getApplication()).libroDao()
-        val autorDAO= RoomDB.getInstance(getApplication()).autorDao()
-        val editorialDAO= RoomDB.getInstance(getApplication()).editorialDao()
-        val tagsDAO= RoomDB.getInstance(getApplication()).tagsDao()
+        val libroDAO= RoomDB.getInstance(getApplication(), viewModelScope).libroDao()
+        val autorDAO= RoomDB.getInstance(getApplication(), viewModelScope).autorDao()
+        val editorialDAO= RoomDB.getInstance(getApplication(), viewModelScope).editorialDao()
+        val tagsDAO= RoomDB.getInstance(getApplication(), viewModelScope).tagsDao()
         repository= LibroRepository(libroDAO, autorDAO,editorialDAO,tagsDAO)
     }
 

@@ -19,10 +19,13 @@ interface EditorialDAO {
     @Delete
     fun deleteEditorial(editorial: Editorial)
 
+    @Query("DELETE FROM Editorial")
+    fun deleteAll()
+
     @Query("SELECT * FROM Editorial\n" +
             "INNER JOIN EditorialxLibro\n" +
             "ON Editorial.id=EditorialxLibro.editorialId\n" +
             "WHERE EditorialxLibro.libroId = :libroId")
-    fun getEditorialByLibro(libroId: Int): List<Editorial>
+    fun getEditorialByLibro(libroId: Int): LiveData<List<Editorial>>
 
 }
