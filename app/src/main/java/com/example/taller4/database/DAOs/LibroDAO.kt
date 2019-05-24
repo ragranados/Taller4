@@ -11,7 +11,7 @@ interface LibroDAO {
     fun getAllLibros():LiveData<List<Libro>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertLibro(libro: Libro)
+    suspend fun insertLibro(libro: Libro)
 
     @Update
     fun updateLibro(libro: Libro)
