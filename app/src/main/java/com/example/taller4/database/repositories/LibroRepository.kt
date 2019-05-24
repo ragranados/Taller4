@@ -19,7 +19,7 @@ class LibroRepository(private val libroDao:LibroDAO,
     //-----------------------------Libros---------------------------------------------
 
     //obtener libro
-    fun findLibroByName(name: String): List<Libro> = libroDao.findLibroByName(name)
+    fun findLibroByName(name: String): LiveData<List<Libro>> = libroDao.findLibroByName(name)
 
     //obtener libros
     fun getAllLibros(): LiveData<List<Libro>> = libroDao.getAllLibros()
@@ -39,7 +39,7 @@ class LibroRepository(private val libroDao:LibroDAO,
     //-------------------------------Autor--------------------------------------------
 
     //obtener autor
-    fun getAutorByLibro(libroId: Int): List<Autor> = autorDao.getAutorByLibro(libroId)
+    fun getAutorByLibro(libroId: Int): LiveData<List<Autor>> = autorDao.getAutorByLibro(libroId)
 
     //obtener autores
     fun getAllAutores(): LiveData<List<Autor>> = autorDao.getallAutores()
@@ -58,7 +58,7 @@ class LibroRepository(private val libroDao:LibroDAO,
     //-------------------------------Editorial----------------------------------------
 
     //obtener editorial
-    fun getEditorialByLibro(libroId: Int): List<Editorial> = editorialDao.getEditorialByLibro(libroId)
+    fun getEditorialByLibro(libroId: Int): LiveData<List<Editorial>> = editorialDao.getEditorialByLibro(libroId)
 
     //obtener editoriales
     fun getAllEditoriales(): LiveData<List<Editorial>> = editorialDao.getallEditorial()
@@ -77,7 +77,7 @@ class LibroRepository(private val libroDao:LibroDAO,
     //---------------------------------Tags-------------------------------------------
 
    //obtener tag
-   fun getTagsByLibro(libroId: Int): List<Tags> = tagsDao.getTagsByLibro(libroId)
+   fun getTagsByLibro(libroId: Int): LiveData<List<Tags>> = tagsDao.getTagsByLibro(libroId)
 
     //obtener tags
     fun getallTags(): LiveData<List<Tags>> = tagsDao.getallTags()
