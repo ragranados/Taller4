@@ -26,10 +26,14 @@ class MainActivity : AppCompatActivity() {
 
         val libroViewModel= ViewModelProviders.of(this).get(LibroViewModel::class.java)
 
-        val libros = libroViewModel.getTagsByLibro(0)
+        val libros = libroViewModel.getTagsByLibro(1)
 
         val librosObserver = Observer<List<Tags>>{ lista ->
-            Log.d("prueba",lista[0].tag)
+            if(lista.size > 0){
+                Log.d("prueba",lista[0].tag)
+            }else{
+                Log.d("prueba","no hay tags")
+            }
         }
 
         libros.observe(this,librosObserver)
