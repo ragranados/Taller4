@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     fun setUpView(libros: ArrayList<LibroDTO>){
         var viewManager = LinearLayoutManager(this)
 
-        var viewAdapter = BookAdapter(this, {})
+        var viewAdapter = BookAdapter(this, {bookItem: LibroDTO -> itemClickedPortrait(bookItem)})
 
         viewAdapter.setBooks(libros)
 

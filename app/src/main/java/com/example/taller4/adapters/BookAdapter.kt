@@ -29,7 +29,7 @@ class BookAdapter (context: Context,val clickListener: (LibroDTO) -> Unit) : Rec
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val current = books[position]
 
-        holder.bookViewItem.text = current.titulo
+        holder.bind(current,clickListener)
     }
 
     fun setBooks(books: List<LibroDTO>){
@@ -37,7 +37,12 @@ class BookAdapter (context: Context,val clickListener: (LibroDTO) -> Unit) : Rec
     }
 
     inner class BookViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val bookViewItem: TextView = itemView.findViewById(R.id.item_view_book)
+
+
+        fun bind(item: LibroDTO,clickListener: (LibroDTO) -> Unit) = with(itemView){
+            item_view_book.text =item.titulo
+        }
+
     }
 
 }
