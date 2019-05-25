@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun itemClickedPortrait(libro: LibroDTO){
-
+        Log.d("pruebaClick",libro.titulo)
     }
 
     fun itemClickedLandScape(libro: LibroDTO){

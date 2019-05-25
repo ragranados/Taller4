@@ -41,6 +41,7 @@ class BookAdapter (context: Context,val clickListener: (LibroDTO) -> Unit) : Rec
 
         fun bind(item: LibroDTO,clickListener: (LibroDTO) -> Unit) = with(itemView){
             item_view_book.text =item.titulo
+            this.setOnClickListener { clickListener(item) }
         }
 
     }
