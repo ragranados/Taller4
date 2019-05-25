@@ -60,6 +60,7 @@ public abstract class RoomDB:RoomDatabase(){
                         populateDBEditorial(database.editorialDao())
                         populateDBTags(database.tagsDao())
 
+
                     }
                 }
             }
@@ -87,6 +88,10 @@ public abstract class RoomDB:RoomDatabase(){
             tagsDAO.deleteAll()
             var tag = Tags("numeros")
             tagsDAO.insertTag(tag)
+        }
+
+        suspend fun populateDBTablasCruz(){
+
         }
 
     }
