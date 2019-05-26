@@ -2,6 +2,7 @@ package com.example.taller4
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import com.example.taller4.Entities.Libro
 import com.example.taller4.Entities.Tags
 import com.example.taller4.ViewModel.LibroViewModel
 import com.example.taller4.adapters.BookAdapter
+import com.example.taller4.fragments.BookDetailFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -76,11 +78,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     fun setUpView(libros: ArrayList<LibroDTO>){
         var viewManager = LinearLayoutManager(this)
+        lateinit var viewAdapter: BookAdapter
 
-        var viewAdapter = BookAdapter(this, {bookItem: LibroDTO -> itemClickedPortrait(bookItem)})
+
+        if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            viewAdapter = BookAdapter(this, {bookItem: LibroDTO -> itemClickedPortrait(bookItem)})
+        }else{
+            var contentFragment : BookDetailFragment = BookDetailFragment.newInstance(LibroDTO())
+            viewAdapter =BookAdapter(this, {bookItem: LibroDTO -> itemClickedLandScape(bookItem)})
+            changeFragment(R.id.land_book_detail,contentFragment)
+        }
 
         viewAdapter.setBooks(libros)
 
@@ -101,7 +110,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun itemClickedLandScape(libro: LibroDTO){
-
+        var contentFragment : BookDetailFragment = BookDetailFragment.newInstance(libro)
+        changeFragment(R.id.land_book_detail,contentFragment)
     }
 
     private fun changeFragment(id: Int, frag: Fragment){ supportFragmentManager.beginTransaction().replace(id, frag).commit() }

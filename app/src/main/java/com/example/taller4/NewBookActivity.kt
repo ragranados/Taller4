@@ -21,9 +21,11 @@ class NewBookActivity : AppCompatActivity() {
     private lateinit var editTags: EditText
     private lateinit var bAutores: Button
     private lateinit var bTags: Button
+    private lateinit var bEditoriales: Button
 
     private var autores = ArrayList<String>()
     private var tags = ArrayList<String>()
+    private var editoriales = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +46,7 @@ class NewBookActivity : AppCompatActivity() {
                 reply.putString(EXTRA_TITULO, editTitulo.text.toString())
                 reply.putStringArrayList(EXTRA_AUTORES,autores)
                 reply.putString(EXTRA_EDICION,editEdicion.text.toString())
-                reply.putString(EXTRA_EDITORIAL,editEditorial.text.toString())
+                reply.putStringArrayList(EXTRA_EDITORIAL,editoriales)
                 reply.putString(EXTRA_ISBN,editISBN.text.toString())
                 reply.putString(EXTRA_SINOPSIS, editSinopsis.text.toString())
                 reply.putStringArrayList(EXTRA_TAGS,tags)
@@ -66,12 +68,14 @@ class NewBookActivity : AppCompatActivity() {
         //editEditorial.setText("N/A")
         editAutores = findViewById(R.id.autores)
         editEdicion = findViewById(R.id.edicion)
-        editEditorial = findViewById(R.id.editorial)
+        editEditorial = findViewById(R.id.editoriales)
         editISBN = findViewById(R.id.isbn)
         editSinopsis = findViewById(R.id.sinopsis)
         editTags = findViewById(R.id.tags)
         bAutores = findViewById(R.id.add_autores)
         bTags = findViewById(R.id.add_tags)
+        bEditoriales = findViewById(R.id.add_editoriales)
+
     }
 
     fun initButtons(){
@@ -86,6 +90,13 @@ class NewBookActivity : AppCompatActivity() {
 
             editTags.setText("")
         }
+
+        bEditoriales.setOnClickListener{
+            editoriales.add(editEditorial.text.toString())
+
+            editEditorial.setText("")
+        }
+
 
     }
 
