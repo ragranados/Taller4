@@ -12,6 +12,7 @@ import com.example.taller4.LibroDTO
 
 import com.example.taller4.R
 import com.example.taller4.models.Book
+import kotlinx.android.synthetic.main.fragment_book_detail.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,10 +32,18 @@ class BookDetailFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_book_detail, container, false)
         fragmentView = view
+
+        bindData()
+
         return view
     }
 
-
+    fun bindData(){
+        fragmentView.titulo.text = book.titulo
+        fragmentView.sinopsis.text = book.sinopsis
+        fragmentView.isbn.text = book.isbn
+        fragmentView.edicion.text = book.edicion
+    }
 
     companion object {
 

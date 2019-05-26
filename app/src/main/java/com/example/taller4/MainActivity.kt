@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         val librosDTOList = ArrayList<LibroDTO>()
 
         for(i in libros){
-            librosDTOList.add(LibroDTO(i.nombre, libroViewModel.findAutorByLibro(i.id.toInt()).value,i.Edicion,i.Edicion,i.isbn,i.Sinopsis, emptyList()))
+            librosDTOList.add(LibroDTO(i.nombre, libroViewModel.findAutorByLibro(i.id.toInt()).value,i.Edicion,i.isbn,i.Sinopsis, emptyList()))
         }
 
         return librosDTOList
@@ -92,8 +92,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun itemClickedPortrait(libro: LibroDTO){
-        /*val intent = Intent()
-        intent.putExtra("libro",libro)*/
 
         val bookBundle = Bundle()
         bookBundle.putParcelable("libro",libro)

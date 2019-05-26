@@ -11,7 +11,6 @@ class LibroDTO (
         val titulo: String = "N/A",
         val autores: List<Autor>? =ArrayList(),
         val edicion: String = "N/A",
-        val editorial: String = "N/A",
         val isbn: String = "N/A",
         val sinopsis: String = "N/A",
         val tags: List<Tags>? = ArrayList()
@@ -22,7 +21,6 @@ class LibroDTO (
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readString(),
             parcel.createTypedArrayList(Tags)) {
     }
 
@@ -30,7 +28,6 @@ class LibroDTO (
         parcel.writeString(titulo)
         parcel.writeTypedList(autores)
         parcel.writeString(edicion)
-        parcel.writeString(editorial)
         parcel.writeString(isbn)
         parcel.writeString(sinopsis)
         parcel.writeTypedList(tags)
