@@ -34,6 +34,8 @@ class BookDetailFragment : Fragment() {
         return view
     }
 
+
+
     companion object {
 
         // TODO: Rename and change types and number of parameters

@@ -1,36 +1,39 @@
 package com.example.taller4
 
+import android.nfc.Tag
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.lifecycle.LiveData
+import com.example.taller4.Entities.Autor
+import com.example.taller4.Entities.Tags
 
 class LibroDTO (
-    val titulo: String = "N/A",
-    val autores: List<String> = emptyList(),
-    val edicion: String = "N/A",
-    val editorial: String = "N/A",
-    val isbn: String = "N/A",
-    val sinopsis: String = "N/A",
-    val tags: List<String> = emptyList()
+        val titulo: String = "N/A",
+        val autores: List<Autor>? =ArrayList(),
+        val edicion: String = "N/A",
+        val editorial: String = "N/A",
+        val isbn: String = "N/A",
+        val sinopsis: String = "N/A",
+        val tags: List<Tags>? = ArrayList()
 ):Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
-            parcel.createStringArrayList(),
+            parcel.createTypedArrayList(Autor),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.createStringArrayList()) {
+            parcel.createTypedArrayList(Tags)) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(titulo)
-        parcel.writeStringList(autores)
+        parcel.writeTypedList(autores)
         parcel.writeString(edicion)
         parcel.writeString(editorial)
         parcel.writeString(isbn)
         parcel.writeString(sinopsis)
-        parcel.writeStringList(tags)
+        parcel.writeTypedList(tags)
     }
 
     override fun describeContents(): Int {

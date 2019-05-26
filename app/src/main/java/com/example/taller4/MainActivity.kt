@@ -5,8 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.taller4.Entities.Autor
 import com.example.taller4.Entities.Libro
 import com.example.taller4.Entities.Tags
 import com.example.taller4.ViewModel.LibroViewModel
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         val librosDTOList = ArrayList<LibroDTO>()
 
         for(i in libros){
-            librosDTOList.add(LibroDTO(i.nombre, emptyList(),i.Edicion,i.Edicion,i.isbn,i.Sinopsis, emptyList()))
+            librosDTOList.add(LibroDTO(i.nombre, libroViewModel.findAutorByLibro(i.id.toInt()).value,i.Edicion,i.Edicion,i.isbn,i.Sinopsis, emptyList()))
         }
 
         return librosDTOList
@@ -56,14 +58,20 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == newBookActivityRequestCode && resultCode == Activity.RESULT_OK){
-            data?.let {
+            data?.extras?.let {
                 libroViewModel.insertLibro(Libro("N/A",
-                        data?.getStringExtra(NewBookActivity.EXTRA_TITULO),
-                        data?.getStringExtra(NewBookActivity.EXTRA_EDICION),
-                        data?.getStringExtra(NewBookActivity.EXTRA_SINOPSIS),
-                        data?.getStringExtra(NewBookActivity.EXTRA_ISBN),
+                        it.getString(NewBookActivity.EXTRA_TITULO),
+                        it.getString(NewBookActivity.EXTRA_EDICION),
+                        it.getString(NewBookActivity.EXTRA_SINOPSIS),
+                        it.getString(NewBookActivity.EXTRA_ISBN),
                         false))
             }
+
+            data?.extras?.getStringArrayList(NewBookActivity.EXTRA_AUTORES)?.forEach { autor ->
+                libroViewModel.insertAutor(Autor(autor))
+            }
+
+            //libroViewModel.findAutorByLibro()
         }
 
     }
@@ -84,12 +92,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun itemClickedPortrait(libro: LibroDTO){
-        Log.d("pruebaClick",libro.titulo)
+        /*val intent = Intent()
+        intent.putExtra("libro",libro)*/
+
+        val bookBundle = Bundle()
+        bookBundle.putParcelable("libro",libro)
+
+        startActivity(Intent(this, BookDetailActivity::class.java).putExtras(bookBundle))
+
     }
 
     fun itemClickedLandScape(libro: LibroDTO){
 
     }
+
+    private fun changeFragment(id: Int, frag: Fragment){ supportFragmentManager.beginTransaction().replace(id, frag).commit() }
 
     companion object {
         const val newBookActivityRequestCode = 1

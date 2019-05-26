@@ -35,15 +35,24 @@ class NewBookActivity : AppCompatActivity() {
         button.setOnClickListener{
             val replyIntent = Intent()
 
+            val reply = Bundle()
+            //reply.putStringArrayList()
+
             //val bookTittle = editTitulo.text.toString()
 
-            replyIntent.putExtra(EXTRA_TITULO, editTitulo.text.toString())
-            replyIntent.putStringArrayListExtra(EXTRA_AUTORES,autores)
-            replyIntent.putExtra(EXTRA_EDICION,editEdicion.text.toString())
-            replyIntent.putExtra(EXTRA_EDICION,editEditorial.text.toString())
-            replyIntent.putExtra(EXTRA_ISBN,editISBN.text.toString())
-            replyIntent.putExtra(EXTRA_SINOPSIS, editSinopsis.text.toString())
-            replyIntent.putExtra(EXTRA_TAGS,editSinopsis.text.toString())
+            //if(editTitulo.text.isNotEmpty() && autores.isNotEmpty() && editEdicion.text.isNotEmpty() && editTitulo.text.isNotEmpty()){
+                reply.putString(EXTRA_TITULO, editTitulo.text.toString())
+                reply.putStringArrayList(EXTRA_AUTORES,autores)
+                reply.putString(EXTRA_EDICION,editEdicion.text.toString())
+                reply.putString(EXTRA_EDITORIAL,editEditorial.text.toString())
+                reply.putString(EXTRA_ISBN,editISBN.text.toString())
+                reply.putString(EXTRA_SINOPSIS, editSinopsis.text.toString())
+                reply.putStringArrayList(EXTRA_TAGS,tags)
+            //}
+
+            replyIntent.putExtras(reply)
+
+
 
             setResult(Activity.RESULT_OK,replyIntent)
 
@@ -54,6 +63,7 @@ class NewBookActivity : AppCompatActivity() {
 
     fun getEditTexts(){
         editTitulo = findViewById(R.id.titulo)
+        //editEditorial.setText("N/A")
         editAutores = findViewById(R.id.autores)
         editEdicion = findViewById(R.id.edicion)
         editEditorial = findViewById(R.id.editorial)
