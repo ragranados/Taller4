@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taller4.Entities.Autor
+import com.example.taller4.Entities.Editorial
 import com.example.taller4.Entities.Libro
 import com.example.taller4.Entities.Tags
 import com.example.taller4.ViewModel.LibroViewModel
@@ -71,6 +72,14 @@ class MainActivity : AppCompatActivity() {
 
             data?.extras?.getStringArrayList(NewBookActivity.EXTRA_AUTORES)?.forEach { autor ->
                 libroViewModel.insertAutor(Autor(autor))
+            }
+
+            data?.extras?.getStringArrayList(NewBookActivity.EXTRA_EDITORIAL)?.forEach { editorial->
+                libroViewModel.insertEditorial(Editorial(editorial))
+            }
+
+            data?.extras?.getStringArrayList(NewBookActivity.EXTRA_TAGS)?.forEach {tag->
+                libroViewModel.insertTags(Tags(tag))
             }
 
             //libroViewModel.findAutorByLibro()
